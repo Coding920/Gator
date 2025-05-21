@@ -38,6 +38,8 @@ func main() {
 	cmds := commands{commands: make(map[string]func(*state, command) error)}
 	cmds.register("login", loginHandler)
 	cmds.register("register", registerHandler)
+	cmds.register("reset", resetUsersDb)
+	cmds.register("users", listUsers)
 
 	inputCmd := command{
 		name: strings.ToLower(os.Args[1]),
