@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 )
 
@@ -9,7 +10,12 @@ func loginHandler(s *state, cmd command) error {
 		return fmt.Errorf("Must provide username")
 	}
 
-	err := s.cfg.SetUser(cmd.args[0])
+	user, err := s.db.GetUser(context.Background(), cmd.args[0])
+	if err != nil {
+		return fmt.Errorf("Not a username in the database")
+	}
+
+	err = s.cfg.SetUser(user.Name)
 	if err != nil {
 		return err
 	}
