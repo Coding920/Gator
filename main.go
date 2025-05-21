@@ -40,6 +40,7 @@ func main() {
 	cmds.register("register", registerHandler)
 	cmds.register("reset", resetUsersDb)
 	cmds.register("users", listUsers)
+	cmds.register("agg", agg)
 
 	inputCmd := command{
 		name: strings.ToLower(os.Args[1]),
